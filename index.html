@@ -1,0 +1,283 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      const resultOptions = {
+        YES: 'Рішення ПРИЙНЯТЕ',
+        NO: 'Рішення НЕ ПРИЙНЯТЕ'
+      }
+
+      const voteOptions = {
+        YES: 'За',
+        NO: 'Проти',
+        NO_VOTE: 'Утримався',
+        DID_NOT_VOTE: 'Не голосував',
+        NO_SHOW: 'Відсутній'
+      }
+
+      let dataFiles = [
+        'data-final/210211_1.json',
+        'data-final/210211_10.json',
+        'data-final/210211_11.json',
+        'data-final/210211_12.json',
+        'data-final/210211_13.json',
+        'data-final/210211_14.json',
+        'data-final/210211_15.json',
+        'data-final/210211_16.json',
+        'data-final/210211_17.json',
+        'data-final/210211_18.json',
+        'data-final/210211_19.json',
+        'data-final/210211_2.json',
+        'data-final/210211_20.json',
+        'data-final/210211_21.json',
+        'data-final/210211_26.json',
+        'data-final/210211_27.json',
+        'data-final/210211_28.json',
+        'data-final/210211_29.json',
+        'data-final/210211_3.json',
+        'data-final/210211_30.json',
+        'data-final/210211_31.json',
+        'data-final/210211_32.json',
+        'data-final/210211_34.json',
+        'data-final/210211_35.json',
+        'data-final/210211_36.json',
+        'data-final/210211_37.json',
+        'data-final/210211_38.json',
+        'data-final/210211_39.json',
+        'data-final/210211_4.json',
+        'data-final/210211_40.json',
+        'data-final/210211_41.json',
+        'data-final/210211_42.json',
+        'data-final/210211_43.json',
+        'data-final/210211_44.json',
+        'data-final/210211_45.json',
+        'data-final/210211_46.json',
+        'data-final/210211_47.json',
+        'data-final/210211_48.json',
+        'data-final/210211_49.json',
+        'data-final/210211_5.json',
+        'data-final/210211_50.json',
+        'data-final/210211_51.json',
+        'data-final/210211_52.json',
+        'data-final/210211_53.json',
+        'data-final/210211_54.json',
+        'data-final/210211_55.json',
+        'data-final/210211_56.json',
+        'data-final/210211_57.json',
+        'data-final/210211_58.json',
+        'data-final/210211_59.json',
+        'data-final/210211_6.json',
+        'data-final/210211_60.json',
+        'data-final/210211_61.json',
+        'data-final/210211_62.json',
+        'data-final/210211_63.json',
+        'data-final/210211_64.json',
+        'data-final/210211_65.json',
+        'data-final/210211_66.json',
+        'data-final/210211_67.json',
+        'data-final/210211_68.json',
+        'data-final/210211_69.json',
+        'data-final/210211_7.json',
+        'data-final/210211_70.json',
+        'data-final/210211_71.json',
+        'data-final/210211_72.json',
+        'data-final/210211_73.json',
+        'data-final/210211_74.json',
+        'data-final/210211_75.json',
+        'data-final/210211_76.json',
+        'data-final/210211_77.json',
+        'data-final/210211_78.json',
+        'data-final/210211_79.json',
+        'data-final/210211_8.json',
+        'data-final/210211_80.json',
+        'data-final/210211_81.json',
+        'data-final/210211_82.json',
+        'data-final/210211_83.json',
+        'data-final/210211_84.json',
+        'data-final/210211_85.json',
+        'data-final/210211_86.json',
+        'data-final/210211_87.json',
+        'data-final/210211_88.json',
+        'data-final/210211_89.json',
+        'data-final/210211_9.json',
+        'data-final/210223_1.json',
+        'data-final/210223_10.json',
+        'data-final/210223_11.json',
+        'data-final/210223_12.json',
+        'data-final/210223_13.json',
+        'data-final/210223_14.json',
+        'data-final/210223_15.json',
+        'data-final/210223_2.json',
+        'data-final/210223_20.json',
+        'data-final/210223_21.json',
+        'data-final/210223_22.json',
+        'data-final/210223_23.json',
+        'data-final/210223_24.json',
+        'data-final/210223_25.json',
+        'data-final/210223_26.json',
+        'data-final/210223_27.json',
+        'data-final/210223_28.json',
+        'data-final/210223_29.json',
+        'data-final/210223_3.json',
+        'data-final/210223_30.json',
+        'data-final/210223_31.json',
+        'data-final/210223_32.json',
+        'data-final/210223_33.json',
+        'data-final/210223_34.json',
+        'data-final/210223_35.json',
+        'data-final/210223_36.json',
+        'data-final/210223_37.json',
+        'data-final/210223_38.json',
+        'data-final/210223_39.json',
+        'data-final/210223_4.json',
+        'data-final/210223_42.json',
+        'data-final/210223_43.json',
+        'data-final/210223_44.json',
+        'data-final/210223_45.json',
+        'data-final/210223_46.json',
+        'data-final/210223_47.json',
+        'data-final/210223_48.json',
+        'data-final/210223_49.json',
+        'data-final/210223_5.json',
+        'data-final/210223_50.json',
+        'data-final/210223_51.json',
+        'data-final/210223_52.json',
+        'data-final/210223_53.json',
+        'data-final/210223_54.json',
+        'data-final/210223_55.json',
+        'data-final/210223_56.json',
+        'data-final/210223_57.json',
+        'data-final/210223_58.json',
+        'data-final/210223_59.json',
+        'data-final/210223_6.json',
+        'data-final/210223_60.json',
+        'data-final/210223_61.json',
+        'data-final/210223_62.json',
+        'data-final/210223_63.json',
+        'data-final/210223_64.json',
+        'data-final/210223_65.json',
+        'data-final/210223_66.json',
+        'data-final/210223_67.json',
+        'data-final/210223_68.json',
+        'data-final/210223_7.json',
+        'data-final/210223_73.json',
+        'data-final/210223_74.json',
+        'data-final/210223_75.json',
+        'data-final/210223_76.json',
+        'data-final/210223_77.json',
+        'data-final/210223_78.json',
+        'data-final/210223_79.json',
+        'data-final/210223_8.json',
+        'data-final/210223_80.json',
+        'data-final/210223_81.json',
+        'data-final/210223_82.json',
+        'data-final/210223_83.json',
+        'data-final/210223_84.json',
+        'data-final/210223_85.json',
+        'data-final/210223_86.json',
+        'data-final/210223_87.json',
+        'data-final/210223_9.json'
+      ]
+
+      const BASE_LINE_WIDTH = 1
+
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      async function drawChart() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'From');
+          data.addColumn('string', 'To');
+          data.addColumn('number', 'Weight');
+
+        let datarows = []    
+        let drawdata = []
+
+        for await (const dataFile of dataFiles) {
+          let res = await fetchData(dataFile)
+          datarows.push(res)
+        }
+
+        
+        
+        datarows.forEach(row => {
+
+          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.YES, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.YES).length ])
+          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.NO, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO).length ])
+          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.DID_NOT_VOTE, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.DID_NOT_VOTE).length ])
+          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.NO_VOTE, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_VOTE).length ])
+          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.NO_SHOW, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_SHOW).length ])
+
+          if(row.RESULT === resultOptions.YES) {
+            drawdata.push( [ voteOptions.YES, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.YES).length ] )
+            drawdata.push( [ voteOptions.NO_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_VOTE).length ] )
+            drawdata.push( [ voteOptions.DID_NOT_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.DID_NOT_VOTE).length ] )
+            drawdata.push( [ voteOptions.NO_SHOW, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_SHOW).length ] )
+          }
+
+          if(row.RESULT === resultOptions.NO) {
+            drawdata.push( [ voteOptions.NO, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO).length ] )
+            drawdata.push( [ voteOptions.NO_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_VOTE).length ] )
+            drawdata.push( [ voteOptions.DID_NOT_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.DID_NOT_VOTE).length ] )
+            drawdata.push( [ voteOptions.NO_SHOW, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_SHOW).length ] )
+          }
+          
+        })
+
+        data.addRows(drawdata);
+
+        // Sets chart options.
+        var options = {
+          width: Window.innerWidth,
+          height: Window.innerHeight
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+        }
+
+        async function fetchData(path) {
+          let response = await fetch(path)
+          return await response.json()
+        }
+
+        function guessCategory(topic) {
+
+          // порядок денний
+          if(topic.includes('За включення до порядку') || topic.includes('За внесення до порядку')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if ((topic.includes('За зняття з розгляду'))) return 'Порядок денний: прийняття, зміни, тощо'
+          else if ((topic.includes('За прийняття порядку денного')) || topic.includes('За основу питання порядку денного')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if ((topic.includes('За правку в питанні порядку денного'))) return 'Порядок денний: прийняття, зміни, тощо'
+          else if ((topic.includes('За зміну черговості розгляду'))) return 'Порядок денний: прийняття, зміни, тощо'
+
+
+          else if ((topic.includes('зміну цільового призначення земельної ділянки'))) return 'Зміна призначення земельної ділянки'
+          else if ((topic.includes('Про виплату громадянину') && topic.includes('за належну для одержання земельну ділянку'))) return 'Виплата громадянину за земельну ділянку'
+          else if ((topic.includes('продаж земельної ділянки'))) return 'Продаж земельної ділянки'
+          
+          
+          
+          else if ((topic.includes('прийняття до комунальної власності'))) return 'Прийняття до комунальної власності'
+
+
+          
+          else if ((topic.includes('звернення Київської міської ради до'))) return 'Зверняння КМДА до державних стуктур'
+          else if ((topic.includes('Про передачу в дар місту'))) return 'Передача в дар чогось іншому місту у світі'
+
+          else if ((topic.includes('За підтримку депутатських запитів'))) return 'За підтримку депутатських запитів'
+          else if ((topic.includes('За надання слова'))) return 'Надання слова'
+
+          else if ((topic.includes('Про реорганізацію комунального'))) return 'Реорганізацію комунального підприємства'
+
+
+          else return 'Невідома категорія'
+        }
+
+    </script>
+  </head>
+  <body>
+    <div id="sankey_basic" style="width: 100%; height: 100%;"></div>
+  </body>
+</html>
