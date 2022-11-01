@@ -180,7 +180,7 @@
         'data-final/210223_9.json'
       ]
 
-      const BASE_LINE_WIDTH = 1
+      const BASE_LINE_WIDTH = 0.1
 
       google.charts.load('current', {'packages':['sankey']});
       google.charts.setOnLoadCallback(drawChart);
@@ -199,31 +199,34 @@
           datarows.push(res)
         }
 
-        
+        let categoryVoting = {}
         
         datarows.forEach(row => {
 
-          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.YES, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.YES).length ])
-          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.NO, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO).length ])
-          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.DID_NOT_VOTE, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.DID_NOT_VOTE).length ])
-          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.NO_VOTE, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_VOTE).length ])
-          drawdata.push( [ guessCategory(row.GL_Text), voteOptions.NO_SHOW, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_SHOW).length ])
+          let category = guessCategory(row.GL_Text)
 
-          if(row.RESULT === resultOptions.YES) {
-            drawdata.push( [ voteOptions.YES, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.YES).length ] )
-            drawdata.push( [ voteOptions.NO_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_VOTE).length ] )
-            drawdata.push( [ voteOptions.DID_NOT_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.DID_NOT_VOTE).length ] )
-            drawdata.push( [ voteOptions.NO_SHOW, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_SHOW).length ] )
-          }
-
-          if(row.RESULT === resultOptions.NO) {
-            drawdata.push( [ voteOptions.NO, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO).length ] )
-            drawdata.push( [ voteOptions.NO_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_VOTE).length ] )
-            drawdata.push( [ voteOptions.DID_NOT_VOTE, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.DID_NOT_VOTE).length ] )
-            drawdata.push( [ voteOptions.NO_SHOW, row.RESULT, BASE_LINE_WIDTH * row.DPList.filter(r => r.DPGolos === voteOptions.NO_SHOW).length ] )
+          if(categoryVoting.hasOwnProperty(category)) {
+            categoryVoting[category].push(row)
+          } else {
+            categoryVoting[category] = []
+            categoryVoting[category].push(row)
           }
           
         })
+
+        for (const categoryKey in categoryVoting) {
+          for (const voteKey in voteOptions) {
+            drawdata.push([ categoryKey, voteOptions[voteKey], categoryVoting[categoryKey].map(e => e.DPList).flat().filter(g => g.DPGolos == voteOptions[voteKey]).length ])
+          }
+        }
+
+        for (const resultKey in resultOptions) {
+          resultRows = datarows.filter(row => row.RESULT == resultOptions[resultOptions])
+          for (const voteKey in voteOptions) {
+            drawdata.push( [ voteOptions[voteKey], resultOptions[resultKey], datarows.filter(row => row.RESULT == resultOptions[resultKey]).map(e => e.DPList).flat().filter(g => g.DPGolos == voteOptions[voteKey]).length ] )
+          }
+        }
+
 
         data.addRows(drawdata);
 

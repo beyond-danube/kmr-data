@@ -5,7 +5,7 @@ const xlsxResulFiles = 'data-from-xlsx'
 
 fs.readdirSync(xlsxResulFiles).forEach(file => {
 
-    console.log(`process file: ${file}`)
+    //console.log(`process file: ${file}`)
 
     let rawdata = fs.readFileSync(`${xlsxResulFiles}/${file}`);
     let e = JSON.parse(rawdata);
@@ -30,5 +30,7 @@ fs.readdirSync(xlsxResulFiles).forEach(file => {
     e.ABSCnt = e.DPList.filter(item => item.DPGolos === 'Відсутній').length
     e.TotalInclAbsCnt = e.TotalCnt + e.ABSCnt
 
-    fs.writeFileSync(`./data-final/${file}`, JSON.stringify(e, null, 2))
+    console.log(`'./data-final/${file}',`)
+
+    //fs.writeFileSync(`./data-final/${file}`, JSON.stringify(e, null, 2))
 });
