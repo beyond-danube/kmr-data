@@ -21,7 +21,8 @@
         LAND: 'Земельні ділянки та нерухомість',
         COMMUNITY_OWNED: 'Комунальні підприємства',
         SOCIAL: 'Соціальні теми',
-        CITY_PROJECTS: 'Міські проєкти',
+        CITY: 'Міські теми та проєкти',
+        EDUCATION: 'Освіта',
         OTHER: 'Інші теми'
       }
 
@@ -45,7 +46,10 @@
           'Постійне користування земельної ділянки',
           'Приватизація земельної ділянки',
           'Дозвіл на розроблення проєкту землеустрою',
-          'Дозвіл на оцінку земельної ділянки'
+          'Дозвіл на оцінку земельної ділянки',
+          'Оренда земельної ділянки',
+          'Розірвання договору оренди земельної ділянки',
+          'Поновлення договору оренди земельної ділянки'
         ],
         COMMUNITY_OWNED: [
           'Прийняття до комунальної власності',
@@ -55,178 +59,18 @@
         SOCIAL: [
           'Надання пільг'
         ],
-        CITY_PROJECTS: [
+        CITY: [
           'Згода на реалізацію проєкту',
-          'Створення комісії'
+          'Створення комісії',
+          'Благоустрій'
+        ],
+        EDUCATION: [
+          'Зміна типу або найменування навчального закладу'
         ],
         OTHER: [
         'Інша категорія'
         ]
       }
-
-      let dataFiles = [
-        'data-final/210211_1.json',
-        'data-final/210211_10.json',
-        'data-final/210211_11.json',
-        'data-final/210211_12.json',
-        'data-final/210211_13.json',
-        'data-final/210211_14.json',
-        'data-final/210211_15.json',
-        'data-final/210211_16.json',
-        'data-final/210211_17.json',
-        'data-final/210211_18.json',
-        'data-final/210211_19.json',
-        'data-final/210211_2.json',
-        'data-final/210211_20.json',
-        'data-final/210211_21.json',
-        'data-final/210211_26.json',
-        'data-final/210211_27.json',
-        'data-final/210211_28.json',
-        'data-final/210211_29.json',
-        'data-final/210211_3.json',
-        'data-final/210211_30.json',
-        'data-final/210211_31.json',
-        'data-final/210211_32.json',
-        'data-final/210211_34.json',
-        'data-final/210211_35.json',
-        'data-final/210211_36.json',
-        'data-final/210211_37.json',
-        'data-final/210211_38.json',
-        'data-final/210211_39.json',
-        'data-final/210211_4.json',
-        'data-final/210211_40.json',
-        'data-final/210211_41.json',
-        'data-final/210211_42.json',
-        'data-final/210211_43.json',
-        'data-final/210211_44.json',
-        'data-final/210211_45.json',
-        'data-final/210211_46.json',
-        'data-final/210211_47.json',
-        'data-final/210211_48.json',
-        'data-final/210211_49.json',
-        'data-final/210211_5.json',
-        'data-final/210211_50.json',
-        'data-final/210211_51.json',
-        'data-final/210211_52.json',
-        'data-final/210211_53.json',
-        'data-final/210211_54.json',
-        'data-final/210211_55.json',
-        'data-final/210211_56.json',
-        'data-final/210211_57.json',
-        'data-final/210211_58.json',
-        'data-final/210211_59.json',
-        'data-final/210211_6.json',
-        'data-final/210211_60.json',
-        'data-final/210211_61.json',
-        'data-final/210211_62.json',
-        'data-final/210211_63.json',
-        'data-final/210211_64.json',
-        'data-final/210211_65.json',
-        'data-final/210211_66.json',
-        'data-final/210211_67.json',
-        'data-final/210211_68.json',
-        'data-final/210211_69.json',
-        'data-final/210211_7.json',
-        'data-final/210211_70.json',
-        'data-final/210211_71.json',
-        'data-final/210211_72.json',
-        'data-final/210211_73.json',
-        'data-final/210211_74.json',
-        'data-final/210211_75.json',
-        'data-final/210211_76.json',
-        'data-final/210211_77.json',
-        'data-final/210211_78.json',
-        'data-final/210211_79.json',
-        'data-final/210211_8.json',
-        'data-final/210211_80.json',
-        'data-final/210211_81.json',
-        'data-final/210211_82.json',
-        'data-final/210211_83.json',
-        'data-final/210211_84.json',
-        'data-final/210211_85.json',
-        'data-final/210211_86.json',
-        'data-final/210211_87.json',
-        'data-final/210211_88.json',
-        'data-final/210211_89.json',
-        'data-final/210211_9.json',
-        'data-final/210223_1.json',
-        'data-final/210223_10.json',
-        'data-final/210223_11.json',
-        'data-final/210223_12.json',
-        'data-final/210223_13.json',
-        'data-final/210223_14.json',
-        'data-final/210223_15.json',
-        'data-final/210223_2.json',
-        'data-final/210223_20.json',
-        'data-final/210223_21.json',
-        'data-final/210223_22.json',
-        'data-final/210223_23.json',
-        'data-final/210223_24.json',
-        'data-final/210223_25.json',
-        'data-final/210223_26.json',
-        'data-final/210223_27.json',
-        'data-final/210223_28.json',
-        'data-final/210223_29.json',
-        'data-final/210223_3.json',
-        'data-final/210223_30.json',
-        'data-final/210223_31.json',
-        'data-final/210223_32.json',
-        'data-final/210223_33.json',
-        'data-final/210223_34.json',
-        'data-final/210223_35.json',
-        'data-final/210223_36.json',
-        'data-final/210223_37.json',
-        'data-final/210223_38.json',
-        'data-final/210223_39.json',
-        'data-final/210223_4.json',
-        'data-final/210223_42.json',
-        'data-final/210223_43.json',
-        'data-final/210223_44.json',
-        'data-final/210223_45.json',
-        'data-final/210223_46.json',
-        'data-final/210223_47.json',
-        'data-final/210223_48.json',
-        'data-final/210223_49.json',
-        'data-final/210223_5.json',
-        'data-final/210223_50.json',
-        'data-final/210223_51.json',
-        'data-final/210223_52.json',
-        'data-final/210223_53.json',
-        'data-final/210223_54.json',
-        'data-final/210223_55.json',
-        'data-final/210223_56.json',
-        'data-final/210223_57.json',
-        'data-final/210223_58.json',
-        'data-final/210223_59.json',
-        'data-final/210223_6.json',
-        'data-final/210223_60.json',
-        'data-final/210223_61.json',
-        'data-final/210223_62.json',
-        'data-final/210223_63.json',
-        'data-final/210223_64.json',
-        'data-final/210223_65.json',
-        'data-final/210223_66.json',
-        'data-final/210223_67.json',
-        'data-final/210223_68.json',
-        'data-final/210223_7.json',
-        'data-final/210223_73.json',
-        'data-final/210223_74.json',
-        'data-final/210223_75.json',
-        'data-final/210223_76.json',
-        'data-final/210223_77.json',
-        'data-final/210223_78.json',
-        'data-final/210223_79.json',
-        'data-final/210223_8.json',
-        'data-final/210223_80.json',
-        'data-final/210223_81.json',
-        'data-final/210223_82.json',
-        'data-final/210223_83.json',
-        'data-final/210223_84.json',
-        'data-final/210223_85.json',
-        'data-final/210223_86.json',
-        'data-final/210223_87.json',
-        'data-final/210223_9.json'
-      ]
 
       const BASE_LINE_WIDTH = 0.1
 
@@ -242,8 +86,10 @@
         let datarows = []    
         let drawdata = []
 
-        for await (const dataFile of dataFiles) {
-          let res = await fetchData(dataFile)
+        let dataFiles = await fetchData('./date-files-map/date-map.json')
+
+        for await (const dataFile of dataFiles[2021]['02']) {
+          let res = await fetchData(`./data-final/${dataFile}`)
           datarows.push(res)
         }
 
@@ -310,7 +156,7 @@
           // порядок денний
           if(topic.includes('За включення до порядку') || topic.includes('За внесення до порядку')) return 'Порядок денний: прийняття, зміни, тощо'
           else if (topic.includes('За зняття з розгляду')) return 'Порядок денний: прийняття, зміни, тощо'
-          else if (topic.includes('За прийняття порядку денного') || topic.includes('За основу питання порядку денного')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if (topic.includes('За прийняття порядку денного') || topic.includes('За основу питання порядку денного') || topic.includes('За основу питання порпядку денного') || topic.includes('За основу  питання порядку денного')) return 'Порядок денний: прийняття, зміни, тощо' // including typo variations
           else if (topic.includes('За правку в питанні порядку денного')) return 'Порядок денний: прийняття, зміни, тощо'
           else if (topic.includes('За зміну черговості розгляду')) return 'Порядок денний: прийняття, зміни, тощо'
           else if (topic.includes('За перенесення питання порядку')) return 'Порядок денний: прийняття, зміни, тощо'
@@ -322,33 +168,44 @@
           else if (topic.includes('За регламент 20 хвилин на депутатські запити')) return 'Порядок денний: прийняття, зміни, тощо'
           else if (topic.includes('Про зняття з порядку денного питання')) return 'Порядок денний: прийняття, зміни, тощо'
           else if (topic.includes('вкл до порядку денного')) return 'Порядок денний: прийняття, зміни, тощо'
-          else if (topic.includes('За прийняття порячдку денного в цілому')) return 'Порядок денний: прийняття, зміни, тощо' // typo here, hardcoded include
+          else if (topic.includes('За прийняття порячдку денного в цілому') || topic.includes('Про затвердження порядку денного в цілому')) return 'Порядок денний: прийняття, зміни, тощо' // typo here, hardcoded include
           else if (topic.includes('Про включення питання  до порядку денного')) return 'Порядок денний: прийняття, зміни, тощо' // typo here, hardcoded include
           else if (topic.includes('Про внесення до порядку денного питання')) return 'Порядок денний: прийняття, зміни, тощо' // phrase variation
           else if (topic.includes('Про перенесення питання порчядку денного')) return 'Порядок денний: прийняття, зміни, тощо' // phrase variation
           else if (topic.includes('За прийняття питаннь') && topic.includes('порядку денного')) return 'Порядок денний: прийняття, зміни, тощо' // typo here, hardcoded include
-          else if (topic.includes('За продовження пленарного засідання до 19-ї години')) return 'Порядок денний: прийняття, зміни, тощо'
-          
-          
-          
+          else if (topic.includes('За продовження пленарного засідання')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if (topic.includes('За правки до питання порядку денного')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if (topic.includes('За пропозицію депутата')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if (topic.includes('За перерву в пленарному засіданні')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if (topic.includes('За розділ') && topic.includes('порядку денного')) return 'Порядок денний: прийняття, зміни, тощо'
+          else if (topic.includes('За зняття') && topic.includes('питань порядку денного')) return 'Порядок денний: прийняття, зміни, тощо'
+           
           
           else if (topic.includes('Про внесення змін')) return 'Внесення змін у попередні рішення'
 
 
           // надання слова
           else if (topic.includes('За надання слова')) return 'Надання слова'
+          else if (topic.includes('Про надання слова')) return 'Надання слова'
           else if (topic.includes('За правку депутата')) return 'Правку депутата'
 
 
           // земельні ділянки та будівлі
-          else if (topic.includes('зміну цільового призначення земельної ділянки')) return 'Зміна призначення земельної ділянки'
+          else if (topic.includes('зміну цільового призначення земельної ділянки') || topic.includes('зміну цільового призначення земельних ділянок')) return 'Зміна призначення земельної ділянки'
           else if (topic.includes('Про виплату') && topic.includes('за належну для одержання земельну ділянку')) return 'Виплата громадянину за земельну ділянку'
           else if (topic.includes('продаж земельної ділянки')) return 'Продаж земельної ділянки'
           else if (topic.includes('Про відмову') && topic.includes('оренди земельної ділянки')) return 'Відмова в оренді земельної ділянки'
-          else if ((topic.includes('надання') || topic.includes('передачу')) && (topic.includes('постійне користування земельної ділянки') || topic.includes('ділянки у постійне користування'))) return 'Постійне користування земельної ділянки'
+          else if ((topic.includes('надання') || topic.includes('передачу')) && (topic.includes('постійне користування земельної ділянки') || topic.includes('ділянки у постійне користування') || topic.includes('земельних ділянок у постійне користування') || topic.includes('земельної ділянки в постійне користування'))) return 'Постійне користування земельної ділянки'
           else if (topic.includes('приватизацію') && topic.includes('земельної ділянки')) return 'Приватизація земельної ділянки'
           else if (topic.includes('передачу') && topic.includes('у приватну власність земельної ділянки')) return 'Приватизація земельної ділянки'
           else if (topic.includes('передачу') && topic.includes('земельної ділянки у приватну власність')) return 'Приватизація земельної ділянки'
+
+
+          else if (topic.includes('передачу') && (topic.includes('в оренду земельної ділянки') || topic.includes('земельної ділянки в оренду') || topic.includes('земельних ділянок в оренду'))) return 'Оренда земельної ділянки'
+
+        
+          else if (topic.includes('розірвання договору оренди земельної ділянки')) return 'Розірвання договору оренди земельної ділянки'
+          else if (topic.includes('поновлення') && topic.includes('договору оренди земельної ділянки')) return 'Поновлення договору оренди земельної ділянки'
 
           // дозвіл на оцінкку
           else if (topic.includes('надання дозволу') && topic.includes('експертної грошової оцінки земельної ділянки')) return 'Дозвіл на оцінку земельної ділянки'
@@ -356,7 +213,7 @@
           
           
           // надання дозволів на проєкти
-          else if (topic.includes('дозволу на розроблення проекту землеустрою')) return 'Дозвіл на розроблення проєкту землеустрою'
+          else if (topic.includes('надання') && (topic.includes('дозволу на розроблення проєкту землеустрою') || topic.includes('надання дозволу на розроблення проекту землеустрою'))) return 'Дозвіл на розроблення проєкту землеустрою'
           
           else if (topic.includes('звернення Київської міської ради до')) return 'Зверняння КМДА до державних стуктур'
           else if (topic.includes('звернення Київської міської ради до')) return 'Зверняння КМДА до державних стуктур'
@@ -380,6 +237,14 @@
           else if (topic.includes('Про надання згоди на реалізацію проєкту')) return 'Згода на реалізацію проєкту'
 
           else if (topic.includes('надання пільг')) return 'Надання пільг'
+          
+          
+          // зміна типу і найменування навчалих закладів
+          else if (topic.includes('зміну типу та найменування загальноосвітнього навчального закладу') || topic.includes('Про зміну типу та найменування деяких закладів освіти') || topic.includes('зміну найменування загальноосвітнього навчального закладу')) return 'Зміна типу або найменування навчального закладу'
+          
+
+          // Міські теми
+          else if (topic.includes('здійснення благоустрою')) return 'Благоустрій'
 
 
           else return 'Інша категорія'
