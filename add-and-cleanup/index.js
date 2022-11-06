@@ -30,7 +30,7 @@ fs.readdirSync(xlsxResulFiles).forEach(file => {
     e.ABSCnt = e.DPList.filter(item => item.DPGolos === 'Відсутній').length
     e.TotalInclAbsCnt = e.TotalCnt + e.ABSCnt
 
-    console.log(`'./data-final/${file}',`)
+    //console.log(`'./data-final/${file}',`)
 
-    //fs.writeFileSync(`./data-final/${file}`, JSON.stringify(e, null, 2))
+    fs.writeFileSync(`./data-final/${file}`, JSON.stringify(e, null, 2))
 });
