@@ -16,6 +16,54 @@
         NO_SHOW: 'Відсутній'
       }
 
+      let readableThemeMap = {
+        ORG: 'Технічна робота',
+        LAND: 'Земельні ділянки та нерухомість',
+        COMMUNITY_OWNED: 'Комунальні підприємства',
+        SOCIAL: 'Соціальні теми',
+        CITY_PROJECTS: 'Міські проєкти',
+        OTHER: 'Інші теми'
+      }
+
+      let themeToCategoryMap = {
+        ORG: [ 
+          'Порядок денний: прийняття, зміни, тощо',
+          'Внесення змін у попередні рішення',
+          'Надання слова',
+          'Підтрика депутатських запитів',
+          'Зверняння КМДА до державних стуктур',
+          'Cкладання депутатських повноважень',
+          'Надання слова',
+          'Підтрика депутатських запитів',
+          'Правку депутата'
+        ],
+        LAND: [
+          'Зміна призначення земельної ділянки',
+          'Виплата громадянину за земельну ділянку',
+          'Продаж земельної ділянки',
+          'Відмова в оренді земельної ділянки',
+          'Постійне користування земельної ділянки',
+          'Приватизація земельної ділянки',
+          'Дозвіл на розроблення проєкту землеустрою',
+          'Дозвіл на оцінку земельної ділянки'
+        ],
+        COMMUNITY_OWNED: [
+          'Прийняття до комунальної власності',
+          'Реорганізацію комунального закладів або підприємства',
+          'Створення комунальної установи'
+        ],
+        SOCIAL: [
+          'Надання пільг'
+        ],
+        CITY_PROJECTS: [
+          'Згода на реалізацію проєкту',
+          'Створення комісії'
+        ],
+        OTHER: [
+        'Інша категорія'
+        ]
+      }
+
       let dataFiles = [
         'data-final/210211_1.json',
         'data-final/210211_10.json',
@@ -214,6 +262,17 @@
           
         })
 
+        console.log(categoryVoting)
+
+
+        for (const themeKey in themeToCategoryMap) {
+          for (const categoryKey in categoryVoting) {
+            if(themeToCategoryMap[themeKey].includes(categoryKey)) {
+              drawdata.push( [ readableThemeMap[themeKey], categoryKey, 100* categoryVoting[categoryKey].length ] )
+            }
+          }
+        }
+
         for (const categoryKey in categoryVoting) {
           for (const voteKey in voteOptions) {
             drawdata.push([ categoryKey, voteOptions[voteKey], categoryVoting[categoryKey].map(e => e.DPList).flat().filter(g => g.DPGolos == voteOptions[voteKey]).length ])
@@ -268,6 +327,7 @@
           else if (topic.includes('Про внесення до порядку денного питання')) return 'Порядок денний: прийняття, зміни, тощо' // phrase variation
           else if (topic.includes('Про перенесення питання порчядку денного')) return 'Порядок денний: прийняття, зміни, тощо' // phrase variation
           else if (topic.includes('За прийняття питаннь') && topic.includes('порядку денного')) return 'Порядок денний: прийняття, зміни, тощо' // typo here, hardcoded include
+          else if (topic.includes('За продовження пленарного засідання до 19-ї години')) return 'Порядок денний: прийняття, зміни, тощо'
           
           
           
@@ -277,6 +337,7 @@
 
           // надання слова
           else if (topic.includes('За надання слова')) return 'Надання слова'
+          else if (topic.includes('За правку депутата')) return 'Правку депутата'
 
 
           // земельні ділянки та будівлі
@@ -301,7 +362,7 @@
           else if (topic.includes('звернення Київської міської ради до')) return 'Зверняння КМДА до державних стуктур'
 
           
-          else if (topic.includes('За підтримку депутатських запитів')) return 'За підтримку депутатських запитів'
+          else if (topic.includes('За підтримку депутатських запитів')) return 'Підтрика депутатських запитів'
           else if (topic.includes('За складання депутатських повноважень')) return 'Cкладання депутатських повноважень'
 
           // комунальна власнысть та підприємства
