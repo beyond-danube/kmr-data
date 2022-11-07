@@ -4,8 +4,8 @@
     <script type="text/javascript">
 
       const resultOptions = {
-        YES: 'Рішення ПРИЙНЯТЕ',
-        NO: 'Рішення НЕ ПРИЙНЯТЕ'
+        YES: 'РІШЕННЯ ПРИЙНЯТЕ',
+        NO: 'РІШЕННЯ НЕ ПРИЙНЯТЕ'
       }
 
       const voteOptions = {
@@ -88,7 +88,7 @@
 
         let dataFiles = await fetchData('./date-files-map/date-map.json')
 
-        for await (const dataFile of dataFiles[2021]['02']) {
+        for await (const dataFile of dataFiles[2021]['12']) {
           let res = await fetchData(`./data-final/${dataFile}`)
           datarows.push(res)
         }
