@@ -32,7 +32,7 @@ class VotingEntry {
     DPGolos
 
     constructor(name, vote) {
-        this.DPName = name;
+        this.DPName = name.replace('  ', ' ').replace('. ', '.');
         this.DPGolos = vote;
     }
 }
