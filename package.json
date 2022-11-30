@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "process-sheets": "node process-google-sheets/index.js",
+    "process-raw-data": "node add-and-cleanup/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

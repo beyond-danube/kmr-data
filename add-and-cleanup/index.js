@@ -4,6 +4,8 @@ const map = require('../common/fraction-map.js')
 const xlsxResulFiles = 'data-from-xlsx'
 const rawJsonDataFiles = 'data-raw-json'
 
+let failedFiles = []
+
 fs.readdirSync(xlsxResulFiles).forEach(file => {
 
     console.log(`process file: ${file}`)
@@ -44,7 +46,8 @@ fs.readdirSync(rawJsonDataFiles).forEach(file => {
 
     console.log(`Process file: ${file}`)
 
-    let e = JSON.parse(rawdata);
+    try {
+        let e = JSON.parse(rawdata);
 
     e.DPList.forEach(dp => {
 
@@ -71,4 +74,13 @@ fs.readdirSync(rawJsonDataFiles).forEach(file => {
     e.RESULT = e.RESULT.trim()
 
     fs.writeFileSync(`./data-final/${file}`, JSON.stringify(e, null, 2))
+
+    } catch (e) {
+        failedFiles.push(file)
+    }
 })
+
+if(failedFiles.length > 0) {
+    console.log(`Could not process ${failedFiles.length} files, manual fix required:`)
+    failedFiles.forEach(failedFile => console.log(failedFile))
+}
