@@ -1,8 +1,10 @@
 const fs = require('fs')
 
 const dataFolder = './data-final/'
+const dataFolderMonthLite = './data-final-lite-month/'
 
 const dataMapFile = './date-files-map/date-map.json'
+const dataMapMonthFile = './date-files-map/date-map-month.json'
 
 let dateMapFoemFile = JSON.parse(fs.readFileSync(dataMapFile))
 
@@ -35,3 +37,23 @@ fs.readdirSync(dataFolder).forEach(file => {
 
 fs.writeFileSync(dataMapFile, JSON.stringify(dateMap, null, 2))
 
+let dateMapFromMonthFile = JSON.parse(fs.readFileSync(dataMapMonthFile))
+
+let dateMonthMap = Object.assign(dateMapFromMonthFile)
+
+fs.readdirSync(dataFolderMonthLite).forEach(file => {
+
+    console.log(`Add month file: ${file}`)
+
+    let year = file.split('.json')[0].split('-')[0]
+    let month = file.split('.json')[0].split('-')[1]
+
+    if(dateMonthMap[year] == '') {
+        dateMonthMap[year] = {}
+    }
+
+    dateMonthMap[year][month] = file
+
+})
+
+fs.writeFileSync(dataMapMonthFile, JSON.stringify(dateMonthMap, null, 2))
