@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Mac OS files not seen by VSCode as ignored by default
+.DS_Store
