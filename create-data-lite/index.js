@@ -65,7 +65,7 @@ fs.readdirSync(dataLite).forEach(file => {
 
 for (const key in dataByYearAndMonth) {
 
-    console.log(`Write composite file: ${file}`)
+    console.log(`Write composite file: ${key}`)
 
     fs.writeFileSync(`${dataLiteMonth}/${key}.json`, JSON.stringify(dataByYearAndMonth[key], null, 2))
 }
