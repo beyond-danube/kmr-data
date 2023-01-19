@@ -6,6 +6,7 @@ const dataLiteMonth = 'data-final-lite-month'
 
 class VotingResultEntryLite {
     docId
+    DocTime
     GL_Text
     YESCnt
     NOCnt
@@ -16,8 +17,9 @@ class VotingResultEntryLite {
     ABSCnt
     TotalInclAbsCnt
 
-    constructor(docId, text, yes, no, utr, ng, total, res, abs, totalWithAbs) {
+    constructor(docId, docTime, text, yes, no, utr, ng, total, res, abs, totalWithAbs) {
         this.docId = docId
+        this.DocTime = docTime
         this.GL_Text = text
         this.YESCnt = yes
         this.NOCnt = no
@@ -37,7 +39,7 @@ fs.readdirSync(fullData).forEach(file => {
     let fullDataFile = fs.readFileSync(`${fullData}/${file}`);
     let fullDataEntry = JSON.parse(fullDataFile);
 
-    let liteDataEntry = new VotingResultEntryLite(file, fullDataEntry.GL_Text, fullDataEntry.YESCnt, fullDataEntry.NOCnt, fullDataEntry.UTRCnt, fullDataEntry.NGCnt, fullDataEntry.TotalCnt, fullDataEntry.RESULT, fullDataEntry.ABSCnt, fullDataEntry.TotalInclAbsCnt)
+    let liteDataEntry = new VotingResultEntryLite(file, fullDataEntry.DocTime ,fullDataEntry.GL_Text, fullDataEntry.YESCnt, fullDataEntry.NOCnt, fullDataEntry.UTRCnt, fullDataEntry.NGCnt, fullDataEntry.TotalCnt, fullDataEntry.RESULT, fullDataEntry.ABSCnt, fullDataEntry.TotalInclAbsCnt)
 
     fs.writeFileSync(`./${dataLite}/${file}`, JSON.stringify(liteDataEntry, null, 2))
 })
