@@ -38,6 +38,8 @@ fs.readdirSync(xlsxResulFiles).forEach(file => {
 
     e.RESULT = e.RESULT.toUpperCase()
 
+    e.docId = file
+
     fs.writeFileSync(`./data-final/${file}`, JSON.stringify(e, null, 2))
 });
 
@@ -72,6 +74,8 @@ fs.readdirSync(rawJsonDataFiles).forEach(file => {
     e.TotalInclAbsCnt = e.TotalCnt + e.ABSCnt
 
     e.RESULT = e.RESULT.trim()
+
+    e.docId = file
 
     fs.writeFileSync(`./data-final/${file}`, JSON.stringify(e, null, 2))
 
