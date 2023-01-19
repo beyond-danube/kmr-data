@@ -3,6 +3,8 @@ const map = require('../common/fraction-map.js')
 
 const xlsxResulFiles = 'data-from-xlsx'
 const rawJsonDataFiles = 'data-raw-json'
+const dataFinal = 'data-final'
+const dataFinalMonth = 'data-final-month'
 
 let failedFiles = []
 
@@ -83,6 +85,35 @@ fs.readdirSync(rawJsonDataFiles).forEach(file => {
         failedFiles.push(file)
     }
 })
+
+let dataByYearAndMonth = {}
+
+
+fs.readdirSync(dataFinal).forEach(file => {
+    
+    console.log(`Merged processed file: ${file}`)
+
+    fileNameDate = file.split('_')[0]
+
+    let year = '20' + fileNameDate.substring(0, 2)
+    let month = fileNameDate.substring(2, 4)
+
+    if(!dataByYearAndMonth.hasOwnProperty(`${year}-${month}`)) {
+        dataByYearAndMonth[`${year}-${month}`] = []
+    }
+
+    let dataFile = fs.readFileSync(`${dataFinal}/${file}`);
+    let dataFileEntry = JSON.parse(dataFile);
+
+    dataByYearAndMonth[`${year}-${month}`].push(dataFileEntry)
+})
+
+for (const key in dataByYearAndMonth) {
+
+    console.log(`Write composite file: ${key}`)
+
+    fs.writeFileSync(`${dataFinalMonth}/${key}.json`, JSON.stringify(dataByYearAndMonth[key], null, 2))
+}
 
 if(failedFiles.length > 0) {
     console.log(`Could not process ${failedFiles.length} files, manual fix required:`)
