@@ -36,12 +36,13 @@
     }
   ],
   "paths": {
-    "/date-files-map/date-map.json": {
+    "/date-files-map/date-map-month.json": {
       "get": {
         "tags": [
           "date-maps"
         ],
-        "summary": "Returns map of signgle voting documents",
+        "summary": "Returns map of voting grouped by month documents",
+        "description": "Document names from a map can be used as parameters in <br> **/data-final-lite-month/{dataFile}** <br> **/data-final-month/{dataFile}**",
         "responses": {
           "200": {
             "description": "OK",
@@ -56,12 +57,13 @@
         }
       }
     },
-    "/date-files-map/date-map-month.json": {
+    "/date-files-map/date-map.json": {
       "get": {
         "tags": [
           "date-maps"
         ],
-        "summary": "Returns map of voting grouped by month documents",
+        "summary": "Returns map of single voting documents",
+        "description": "Document names from a map can be used as parameters in <br> **/data-final-lite/{dataFile}** <br> **/data-final/{dataFile}**",
         "responses": {
           "200": {
             "description": "OK",
@@ -87,7 +89,7 @@
             "name": "dataFile",
             "in": "path",
             "description": "Document name to return",
-            "example": "210831_109.json",
+            "example": "2022-06.json",
             "required": true,
             "schema": {
               "type": "string"
@@ -160,7 +162,7 @@
             "name": "dataFile",
             "in": "path",
             "description": "Document name to return",
-            "example": "210831_109.json",
+            "example": "2022-06.json",
             "required": true,
             "schema": {
               "type": "string"
@@ -296,7 +298,12 @@
   "components": {
     "schemas": {
       "DateMap": {
-        "type": "object"
+        "type": "object",
+        "additionalProperties": true,
+        "example": {
+          "2021": [],
+          "2022": []
+        }
       },
       "VotingEntry": {
         "type": "object",
