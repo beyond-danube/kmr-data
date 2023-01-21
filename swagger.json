@@ -1,0 +1,513 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Kyiv City Council Voting Results Data",
+    "description": "Kyiv City Council provides [open data on voting resulys](https://kmr.gov.ua/uk/result_golosuvanya).  \nData is processed and gathered gathered in [github repositiry](https://github.com/beyond-danube/kmr-data).  \n\nHere is a pseudo-swagger so that fetching it can be done in familiar way. No actual back-end is running, data is represented in stuctured and processed JSON files.",
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/beyond-danube/kmr-data/blob/main/LICENSE"
+    },
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/beyond-danube"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://raw.githubusercontent.com/beyond-danube/kmr-data/main"
+    }
+  ],
+  "tags": [
+    {
+      "name": "date-maps",
+      "description": "Mapping between dates and corresponding voting data entries"
+    },
+    {
+      "name": "data-lite",
+      "description": "Voting results data lile - main fields only"
+    },
+    {
+      "name": "data-full",
+      "description": "Voting results data lile - all fields"
+    },
+    {
+      "name": "data-raw",
+      "description": "Junky, not processed data \"as is\" provided by Kyiv council"
+    }
+  ],
+  "paths": {
+    "/date-files-map/date-map.json": {
+      "get": {
+        "tags": [
+          "date-maps"
+        ],
+        "summary": "Returns map of signgle voting documents",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DateMap"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/date-files-map/date-map-month.json": {
+      "get": {
+        "tags": [
+          "date-maps"
+        ],
+        "summary": "Returns map of voting grouped by month documents",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DateMap"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data-final-lite-month/{dataFile}": {
+      "get": {
+        "tags": [
+          "data-lite"
+        ],
+        "summary": "Gets document by name",
+        "parameters": [
+          {
+            "name": "dataFile",
+            "in": "path",
+            "description": "Document name to return",
+            "example": "210831_109.json",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentLite"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such document"
+          }
+        }
+      }
+    },
+    "/data-final-lite/{dataFile}": {
+      "get": {
+        "tags": [
+          "data-lite"
+        ],
+        "summary": "Gets document by name",
+        "parameters": [
+          {
+            "name": "dataFile",
+            "in": "path",
+            "description": "Document name to return",
+            "example": "210831_109.json",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentLite"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such document"
+          }
+        }
+      }
+    },
+    "/data-final-month/{dataFile}": {
+      "get": {
+        "tags": [
+          "data-full"
+        ],
+        "summary": "Gets document by name",
+        "parameters": [
+          {
+            "name": "dataFile",
+            "in": "path",
+            "description": "Document name to return",
+            "example": "210831_109.json",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Document"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such document"
+          }
+        }
+      }
+    },
+    "/data-final/{dataFile}": {
+      "get": {
+        "tags": [
+          "data-full"
+        ],
+        "summary": "Gets document by name",
+        "parameters": [
+          {
+            "name": "dataFile",
+            "in": "path",
+            "description": "Document name to return",
+            "example": "210831_109.json",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Document"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such document"
+          }
+        }
+      }
+    },
+    "/data-raw-json/{dataFile}": {
+      "get": {
+        "tags": [
+          "data-raw"
+        ],
+        "summary": "Gets document by name",
+        "parameters": [
+          {
+            "name": "dataFile",
+            "in": "path",
+            "description": "Document name to return",
+            "example": "210527_61.json",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentRaw"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such document"
+          }
+        }
+      }
+    },
+    "/data-from-xlsx/{dataFile}": {
+      "get": {
+        "tags": [
+          "data-raw"
+        ],
+        "summary": "Gets document by name",
+        "parameters": [
+          {
+            "name": "dataFile",
+            "in": "path",
+            "description": "Document name to return",
+            "example": "210527_61.json",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentRaw"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such document"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DateMap": {
+        "type": "object"
+      },
+      "VotingEntry": {
+        "type": "object",
+        "properties": {
+          "DPName": {
+            "type": "string",
+            "example": "Андронов В.Є."
+          },
+          "DPFraction": {
+            "type": "string",
+            "example": "ГОЛОС"
+          },
+          "DPGolos": {
+            "type": "string",
+            "enum": [
+              "За",
+              "Проти",
+              "Утримався",
+              "Не голосував",
+              "Відсутній"
+            ]
+          }
+        }
+      },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "docId": {
+            "type": "string",
+            "example": "210831_109.json"
+          },
+          "DocTime": {
+            "type": "string",
+            "example": "27.05.21"
+          },
+          "OrgName": {
+            "type": "string",
+            "example": "КИЇВСЬКА МІСЬКА РАДА"
+          },
+          "SName": {
+            "type": "string",
+            "example": "Пленарне засідання  2 сесія  9 скликання"
+          },
+          "GLType": {
+            "type": "string",
+            "example": "ПОІМЕННЕ ГОЛОСУВАННЯ"
+          },
+          "PD_NPP": {
+            "type": "number",
+            "example": 1
+          },
+          "PD_Fullname": {
+            "type": "string",
+            "example": " "
+          },
+          "GL_Text": {
+            "type": "string",
+            "example": "Про передачу ТОВАРИСТВУ З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ «ЕЛМА» земельної ділянки в оренду для будівництва, експлуатації та обслуговування станції технічного обслуговування та універсального магазину на перетині Кільцевої дороги та вул. Перемоги у Святошинському районі міста Києва (662174408). (Від 01.07.2021 № 08/231-2288/ПР)."
+          },
+          "GL_ResultType": {
+            "type": "string",
+            "example": " "
+          },
+          "DPList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VotingEntry"
+            }
+          },
+          "YESCnt": {
+            "type": "number",
+            "example": 81
+          },
+          "NOcnt": {
+            "type": "number",
+            "example": 0
+          },
+          "UTRCnt": {
+            "type": "number",
+            "example": 1
+          },
+          "NGCnt": {
+            "type": "number",
+            "example": 19
+          },
+          "ABSCnt": {
+            "type": "number",
+            "example": 21
+          },
+          "TotalCnt": {
+            "type": "number",
+            "example": 100
+          },
+          "TotalInclAbsCnt": {
+            "type": "number",
+            "example": 121
+          },
+          "RESULT": {
+            "type": "string",
+            "enum": [
+              "РІШЕННЯ ПРИЙНЯТЕ",
+              "РІШЕННЯ НЕ ПРИЙНЯТЕ"
+            ]
+          }
+        }
+      },
+      "DocumentLite": {
+        "type": "object",
+        "properties": {
+          "docId": {
+            "type": "string",
+            "example": "210831_109.json"
+          },
+          "DocTime": {
+            "type": "string",
+            "example": "27.05.21"
+          },
+          "GL_Text": {
+            "type": "string",
+            "example": "Про передачу ТОВАРИСТВУ З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ «ЕЛМА» земельної ділянки в оренду для будівництва, експлуатації та обслуговування станції технічного обслуговування та універсального магазину на перетині Кільцевої дороги та вул. Перемоги у Святошинському районі міста Києва (662174408). (Від 01.07.2021 № 08/231-2288/ПР)."
+          },
+          "YESCnt": {
+            "type": "number",
+            "example": 81
+          },
+          "NOcnt": {
+            "type": "number",
+            "example": 0
+          },
+          "UTRCnt": {
+            "type": "number",
+            "example": 1
+          },
+          "NGCnt": {
+            "type": "number",
+            "example": 19
+          },
+          "ABSCnt": {
+            "type": "number",
+            "example": 21
+          },
+          "TotalCnt": {
+            "type": "number",
+            "example": 100
+          },
+          "TotalInclAbsCnt": {
+            "type": "number",
+            "example": 121
+          },
+          "RESULT": {
+            "type": "string",
+            "enum": [
+              "РІШЕННЯ ПРИЙНЯТЕ",
+              "РІШЕННЯ НЕ ПРИЙНЯТЕ"
+            ]
+          }
+        }
+      },
+      "DocumentRaw": {
+        "type": "object",
+        "properties": {
+          "DocTime": {
+            "type": "string"
+          },
+          "OrgName": {
+            "type": "string"
+          },
+          "SName": {
+            "type": "string"
+          },
+          "GLType": {
+            "type": "string"
+          },
+          "PD_NPP": {
+            "type": "number"
+          },
+          "PD_Fullname": {
+            "type": "string"
+          },
+          "GL_Text": {
+            "type": "string"
+          },
+          "GL_ResultType": {
+            "type": "string"
+          },
+          "DPList": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "YESCnt": {
+            "type": "number"
+          },
+          "NOcnt": {
+            "type": "number"
+          },
+          "UTRCnt": {
+            "type": "number"
+          },
+          "NGCnt": {
+            "type": "number"
+          },
+          "TotalCnt": {
+            "type": "number"
+          },
+          "RESULT": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
