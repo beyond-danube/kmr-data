@@ -7,8 +7,8 @@
     "process-sheets": "node process-google-sheets/index.js",
     "process-raw-data": "node add-and-cleanup/index.js",
     "create-data-lite": "node create-data-lite/index.js",
-    "create-date-map" : "node create-date-map/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "create-date-map": "node create-date-map/index.js",
+    "test": "mocha"
   },
   "author": "",
   "license": "MIT",
@@ -17,5 +17,9 @@
     "dotenv": "^16.0.3",
     "fs": "^0.0.1-security",
     "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }
