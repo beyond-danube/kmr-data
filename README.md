@@ -49,7 +49,7 @@
 * В консолі бачимо які файли автоматично обробити не вдалось, бо це невалідний JSON, їх виправляємо вручну
 * Виконуємо генерацію ще раз `npm run process-raw-data && create-data-lite && create-date-map`
 * (Опціонально) Виконуємо тести `npm test`
-* Зберігаємо файли у Ґітхабі `git commit -m "added data"` `git push`
+* Зберігаємо файли у Ґітхабі `git add .` `git commit -m "added data"` `git push`
 
 ## Тести
 ![](https://github.com/beyond-danube/kmr-data/actions/workflows/node.yml/badge.svg)
