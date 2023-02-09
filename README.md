@@ -52,6 +52,6 @@
 * Зберігаємо файли у Ґітхабі `git add .` `git commit -m "added data"` `git push`
 
 ## Тести
-![](https://github.com/beyond-danube/kmr-data/actions/workflows/node.yml/badge.svg)
+[![](https://github.com/beyond-danube/kmr-data/actions/workflows/node.yml/badge.svg)](https://github.com/beyond-danube/kmr-data/actions/workflows/node.yml)
   
 Ми перевіряємо, чи якийсь файл не загубився в ході виправлення та групування. Тести автоматично виконуються при пул ріквесті або пуші у main гілку.
