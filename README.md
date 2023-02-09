@@ -45,7 +45,7 @@
   
 Практично кроки такі:
 * Кладено нові файли у папку `data-raw-json`
-* Виконуємо ті правки, які можливо зробити автоматично `npm run process-raw-data && create-data-lite && create-date-map`
+* Виконуємо ті правки, які можливо зробити автоматично `npm run process-raw-data && npm run create-data-lite && npm run create-date-map`
 * В консолі бачимо які файли автоматично обробити не вдалось, бо це невалідний JSON, їх виправляємо вручну
 * Виконуємо генерацію ще раз `npm run process-raw-data && npm run create-data-lite && npm run create-date-map`
 * (Опціонально) Виконуємо тести `npm test`
