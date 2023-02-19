@@ -10,7 +10,7 @@ let failedFiles = []
 
 fs.readdirSync(xlsxResulFiles).forEach(file => {
 
-    console.log(`process file: ${file}`)
+    console.log(`Process file from XLSX: ${file}`)
 
     let rawdata = fs.readFileSync(`${xlsxResulFiles}/${file}`);
     let e = JSON.parse(rawdata);
@@ -48,7 +48,7 @@ fs.readdirSync(xlsxResulFiles).forEach(file => {
 fs.readdirSync(rawJsonDataFiles).forEach(file => {
     let rawdata = fs.readFileSync(`${rawJsonDataFiles}/${file}`);
 
-    console.log(`Process file: ${file}`)
+    console.log(`Process file raw JSON: ${file}`)
 
     try {
         let e = JSON.parse(rawdata);
